@@ -7,7 +7,7 @@ import NoteStore from '../stores/NoteStore';
 import LaneActions from '../actions/LaneActions';
 import Editable from './Editable.jsx';
 
-export default class Lane extends React.Component {
+class Lane extends React.Component {
 
   constructor(props) {
     super(props);
@@ -96,3 +96,12 @@ export default class Lane extends React.Component {
   }
 
 }
+
+
+Lane.Header = class LaneHeader extends React.Component {
+}
+
+Lane.Notes = class LaneNotes extends React.Component {
+}
+
+export default Lane;
