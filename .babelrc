@@ -4,11 +4,15 @@
     "react",
     "survivejs-kanban"
   ],
+  "stage": 1,
   "env": {
     "start": {
       "presets": [
         "react-hmre"
       ]
+    },
+    "build": {
+      "plugins": ["typecheck"]
     }
   }
 }

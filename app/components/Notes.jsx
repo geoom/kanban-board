@@ -4,7 +4,7 @@ import Note from './Note.jsx';
 import LaneActions from '../actions/LaneActions'
 
 	
-export default ({notes, onValueClick, onEdit, onDelete}) => {
+const Notes = ({notes, onValueClick, onEdit, onDelete}) => {
   return (
     <ul className="notes">{notes.map(note =>
       <Note className="note" id={note.id} key={note.id}
@@ -19,3 +19,17 @@ export default ({notes, onValueClick, onEdit, onDelete}) => {
     )}</ul>
   );
 }
+
+Notes.propTypes = {
+  items: React.PropTypes.array,
+  onEdit: React.PropTypes.func,
+  onDelete: React.PropTypes.func
+};
+
+Notes.defaultProps = {
+  items: [],
+  onEdit: () => {},
+  onDelete: () => {}
+};
+
+export default Notes;

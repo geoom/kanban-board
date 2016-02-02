@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Editable extends React.Component {
+class Editable extends React.Component {
   
   render() {
     const {value, onEdit, onValueClick, editing, ...props} = this.props;
@@ -53,3 +53,19 @@ export default class Editable extends React.Component {
   };
   
 }
+
+
+Editable.propTypes = {
+  value: React.PropTypes.string,
+  onEdit: React.PropTypes.func.isRequired,
+  onDelete: React.PropTypes.func
+};
+
+
+Editable.defaultProps = {
+value: '',
+  onEdit: () => {}
+};
+
+
+export default Editable;

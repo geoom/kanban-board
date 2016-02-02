@@ -10,7 +10,8 @@
     "stats": "webpack --profile --json > stats.json",
     "deploy": "gh-pages -d build",
     "test": "karma start",
-    "tdd": "karma start --auto-watch --no-single-run"
+    "tdd": "karma start --auto-watch --no-single-run",
+    "flow": "flow check"
   },
   "author": "",
   "license": "ISC",
@@ -43,11 +44,12 @@
     "style-loader": "^0.13.0",
     "webpack": "^1.12.11",
     "webpack-dev-server": "^1.14.1",
-    "webpack-merge": "^0.7.3"
+    "webpack-merge": "^0.7.3",
+    "babel-plugin-typecheck": "latest"
   },
   "dependencies": {
-    "alt": "^0.18.1",
-    "alt-container": "^1.0.0",
+    "alt": "^0.18.2",
+    "alt-container": "^1.0.1",
     "alt-utils": "^1.0.0",
     "node-uuid": "^1.4.7",
     "react": "^0.14.6",

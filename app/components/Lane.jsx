@@ -123,7 +123,24 @@ class Lane extends React.Component {
 Lane.Header = class LaneHeader extends React.Component {
 }
 
+
 Lane.Notes = class LaneNotes extends React.Component {
 }
+
+
+Lane.propTypes = {
+  lane: React.PropTypes.shape({
+    id: React.PropTypes.string.isRequired,
+    name: React.PropTypes.string,
+    notes: React.PropTypes.array
+  }).isRequired,
+  connectDropTarget: React.PropTypes.func
+};
+
+
+Lane.defaultProps = {
+  name: '',
+  notes: []
+};
 
 export default Lane;
