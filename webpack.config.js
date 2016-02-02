@@ -19,11 +19,13 @@ process.env.BABEL_ENV = TARGET;
 var ROOT_PATH = path.resolve(__dirname);
 var APP_PATH = path.resolve(__dirname, 'app');
 var BUILD_PATH = path.resolve(__dirname, 'build');
+var TEST_PATH = path.resolve(__dirname, 'test');
 
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  build: path.join(__dirname, 'build')
+  build: path.join(__dirname, 'build'),
+  test: TEST_PATH
 };
 
 
@@ -148,3 +150,31 @@ if(TARGET === 'build' || TARGET === 'stats') {
   });
 }
 
+if(TARGET === 'test' || TARGET === 'tdd') {
+  module.exports = merge(common, {
+    entry: {}, // karma will set this
+    output: {}, // karma will set this
+    devtool: 'inline-source-map',
+    resolve: {
+      alias: {
+        'app': PATHS.app
+      }
+    },
+    module: {
+      preLoaders: [
+        {
+          test: /\.jsx?$/,
+          loaders: ['isparta-instrumenter'],
+          include: PATHS.app
+        }
+      ],
+      loaders: [
+        {
+          test: /\.jsx?$/,
+          loaders: ['babel?cacheDirectory'],
+          include: PATHS.test
+        }
+      ]
+    }
+  });
+}
