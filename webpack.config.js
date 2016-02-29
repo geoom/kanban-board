@@ -11,6 +11,10 @@ const Clean = require('clean-webpack-plugin');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+var stylelint = require('stylelint');
+
+
+
 require('es6-promise').polyfill();
 
 const TARGET = process.env.npm_lifecycle_event;
@@ -51,17 +55,29 @@ const common = {
 	],
 	module: {
 	    loaders: [
-			// Set up jsx. This accepts js too thanks to RegExp
-			{
-				test: /\.jsx?$/,
-				// Enable caching for improved performance during development
-				// It uses default OS directory by default. If you need something
-				// more custom, pass a path to it. I.e., babel?cacheDirectory=<path>
-				loaders: ['babel?cacheDirectory'],
-				include: PATHS.app
-			}
+        			// Set up jsx. This accepts js too thanks to RegExp
+        			{
+        				test: /\.jsx?$/,
+        				// Enable caching for improved performance during development
+        				// It uses default OS directory by default. If you need something
+        				// more custom, pass a path to it. I.e., babel?cacheDirectory=<path>
+        				loaders: ['babel?cacheDirectory'],
+        				include: PATHS.app
+        			},
+              {
+                test: /\.css$/,
+                loaders: ['postcss'],
+                include: PATHS.app
+              }
 	    ]
-  	},
+  },
+  postcss: function () {
+    return [stylelint({
+      rules: {
+        'color-hex-case': 'lower'
+      }
+    })];
+  },
 };
 
 
